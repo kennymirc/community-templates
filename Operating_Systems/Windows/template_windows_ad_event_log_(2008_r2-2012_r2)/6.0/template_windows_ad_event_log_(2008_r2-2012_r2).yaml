@@ -203,3 +203,24 @@ zabbix_export:
               name: 'Unlocked User'
               priority: INFO
               description: 'Обліковий запис користувача розблоковано'
+              -
+          uuid: c5e154e3983948ac80557457aeeaa6db
+          name: 'Change User'
+          type: ZABBIX_ACTIVE
+          key: 'eventlog[Security,,,,4738,,]'
+          delay: '300'
+          history: 45d
+          trends: '0'
+          value_type: LOG
+          description: 'Обліковий запис користувача змінено'
+          tags:
+            -
+              tag: Application
+              value: 'Users Logs'
+          triggers:
+            -
+              uuid: 799ac984ead14c70862a6940681bc69d
+              expression: 'logeventid(/Event User Log/eventlog[Security,,,,4738,,],,"4738")=1 and nodata(/Event User Log/eventlog[Security,,,,4738,,],5s)=0'
+              name: 'Change User'
+              priority: INFO
+              description: 'ООбліковий запис користувача змінено'
